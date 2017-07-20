@@ -13,12 +13,16 @@ ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/loca
 RUN chmod u+x /usr/local/bin/forego
 
 # ENV DOCKER_GEN_VERSION 0.7.3
-ENV VERSION_RANCHER_GEN="artifacts/master"
+# ENV VERSION_RANCHER_GEN="artifacts/master"
 
-RUN wget "https://gitlab.com/adi90x/rancher-gen-rap/builds/$VERSION_RANCHER_GEN/download?job=compile-go" -O /tmp/rancher-gen-rap.zip \
-	&& unzip /tmp/rancher-gen-rap.zip -d /usr/local/bin \
-	&& chmod +x /usr/local/bin/rancher-gen \
-	&& rm -f /tmp/rancher-gen-rap.zip
+# RUN wget "https://gitlab.com/adi90x/rancher-gen-rap/builds/$VERSION_RANCHER_GEN/download?job=compile-go" -O /tmp/rancher-gen-rap.zip \
+# 	&& unzip /tmp/rancher-gen-rap.zip -d /usr/local/bin \
+# 	&& chmod +x /usr/local/bin/rancher-gen \
+# 	&& rm -f /tmp/rancher-gen-rap.zip
+
+COPY ./rancher-gen /usr/local/bin
+
+RUN chmod +x /usr/local/bin/rancher-gen
 
 
 # 19/07/2017 13:10:28cron.1      | /bin/bash: crond: command not found
